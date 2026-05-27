@@ -1,0 +1,13 @@
+Tag Name,Address,Data Type,Scale,Description,Client Access
+Volume_SP,40001,UINT16,1,Setpoint Volume Air (mL),Read/Write
+Volume_PV,40002,UINT16,1,Volume Air Aktual (mL),Read Only
+Status_Pompa,40003,UINT8,,Status PMP-101 (0=OFF, 1=ON),Read Only
+Jarak_SP,40004,UINT16,1,Setpoint Jarak Plunger (cm),Read/Write
+Jarak_PV,40005,UINT16,1,Jarak Aktual (cm),Read Only
+Status_Motor,40006,UINT8,,Status MTR-201 (0=OFF, 1=ON),Read Only
+Suhu_SP,40007,UINT16,0.1,Setpoint Suhu (C),Read/Write
+Suhu_PV,40008,INT16,0.1,Suhu Aktual (C),Read Only
+Status_Heater,40009,UINT8,,Status HTR-301 (0=OFF, 1=ON),Read Only
+Mixing_Duration,40010,UINT16,1,Durasi Mixing (detik),Read/Write
+Mixing_Timer,40011,UINT16,1,Timer Mixing Aktual (detik),Read Only
+Status_Mixer,40012,UINT8,,Status MTR-301 (0=OFF, 1=ON),Read Only

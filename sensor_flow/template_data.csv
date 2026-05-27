@@ -1,0 +1,41 @@
+# Template Data Karakterisasi YFS401
+# Slave 1 - TK-101 Flow Control
+#
+# Instruksi:
+# 1. Upload yfs401_karakteristik.ino ke Arduino
+# 2. Untuk setiap target volume (100, 250, 500, 1000, 1500 mL):
+#    - Buka valve, kumpulkan air ke wadah ukur
+#    - Catat pulse count dari Serial Monitor
+#    - Catat waktu (seconds)
+#    - Ulangi 5-10x untuk setiap volume
+# 3. Hitung: flow measured, pulse per L, error vs datasheet
+#
+# Format:
+# NO,TRIAL,TARGET_VOLUME_ML,ACTUAL_VOLUME_ML,TIME_SEC,PULSE_COUNT,FLOW_MEASURED_ML_MIN,PULSE_PER_L,ERROR_VS_DATASHEET_PCT,NOTES
+
+NO,TRIAL,TARGET_VOLUME_ML,ACTUAL_VOLUME_ML,TIME_SEC,PULSE_COUNT,FLOW_MEASURED_ML_MIN,PULSE_PER_L,ERROR_VS_DATASHEET_PCT,NOTES
+1,1,100.0,,,,,,,,,,
+2,2,100.0,,,,,,,,,,
+3,3,100.0,,,,,,,,,,
+4,4,100.0,,,,,,,,,,
+5,5,100.0,,,,,,,,,,
+6,1,250.0,,,,,,,,,,
+7,2,250.0,,,,,,,,,,
+8,3,250.0,,,,,,,,,,
+9,4,250.0,,,,,,,,,,
+10,5,250.0,,,,,,,,,,
+11,1,500.0,,,,,,,,,,
+12,2,500.0,,,,,,,,,,
+13,3,500.0,,,,,,,,,,
+14,4,500.0,,,,,,,,,,
+15,5,500.0,,,,,,,,,,
+16,1,1000.0,,,,,,,,,,
+17,2,1000.0,,,,,,,,,,
+18,3,1000.0,,,,,,,,,,
+19,4,1000.0,,,,,,,,,,
+20,5,1000.0,,,,,,,,,,
+21,1,1500.0,,,,,,,,,,
+22,2,1500.0,,,,,,,,,,
+23,3,1500.0,,,,,,,,,,
+24,4,1500.0,,,,,,,,,,
+25,5,1500.0,,,,,,,,,,

@@ -1,0 +1,18 @@
+# Template Data Pengujian Kalibrasi Volume - TK-201
+#
+# Petunjuk:
+# 1. Isi data pengukuran untuk setiap volume aktual yang diuji
+# 2. Volume Aktual = volume yang dituangkan ke wadah (ukur dengan gelas ukur)
+# 3. Tinggi Teoritis = Volume Aktual / 254.1
+# 4. Jarak Sensor = pembacaan dari Serial Monitor
+# 5. Tinggi Cairan = Jarak Referensi - Jarak Sensor
+# 6. Volume Terukur = 254.1 × Tinggi Cairan
+# 7. Error % = ((Volume Terukur - Volume Aktual) / Volume Aktual) × 100
+#
+# Konstanta:
+# Luas Penampang = 254.1 cm²
+# Tinggi Maksimal = 22.6 cm
+# Volume Maksimal = ~5742 mL
+# Jarak Referensi = ___ cm (isi setelah kalibrasi)
+
+Tanggal,Kalibrasi,Jarak_Referensi,Volume_Aktual_mL,Tinggi_Teoritis_cm,Jarak_Sensor_cm,Tinggi_Cairan_cm,Volume_Terukur_mL,Error_Pct,Catatan

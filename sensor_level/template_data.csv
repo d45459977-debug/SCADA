@@ -1,0 +1,32 @@
+# Template Data Kalibrasi HC-SR04
+# Slave 2 - TK-201 Level Control
+#
+# Instruksi:
+# 1. Pasang HC-SR04 fix di posisi tertentu
+# 2. Gunakan target solid (karton putih) yang digeser dengan penggaris
+# 3. Untuk setiap jarak referensi, ambil 10 pembacaan
+# 4. Catat: jarak referensi, pembacaan sensor, dan raw pulse
+#
+# Format:
+# NO,JARAK_REF_CM,BACAAN_1,BACAAN_2,BACAAN_3,BACAAN_4,BACAAN_5,BACAAN_6,BACAAN_7,BACAAN_8,BACAAN_9,BACAAN_10,MEAN,STD_DEV,MIN,MAX,ERROR_MEAN
+
+NO,JARAK_REF_CM,BACAAN_1,BACAAN_2,BACAAN_3,BACAAN_4,BACAAN_5,BACAAN_6,BACAAN_7,BACAAN_8,BACAAN_9,BACAAN_10,MEAN,STD_DEV,MIN,MAX,ERROR_MEAN
+1,5.0,,,,,,,,,,,,,,,
+2,7.5,,,,,,,,,,,,,,,
+3,10.0,,,,,,,,,,,,,,,
+4,12.5,,,,,,,,,,,,,,,
+5,15.0,,,,,,,,,,,,,,,
+6,17.5,,,,,,,,,,,,,,,
+7,20.0,,,,,,,,,,,,,,,
+8,22.5,,,,,,,,,,,,,,,
+9,25.0,,,,,,,,,,,,,,,
+10,27.5,,,,,,,,,,,,,,,
+11,30.0,,,,,,,,,,,,,,,
+12,32.5,,,,,,,,,,,,,,,
+13,35.0,,,,,,,,,,,,,,,
+14,37.5,,,,,,,,,,,,,,,
+15,40.0,,,,,,,,,,,,,,,
+16,42.5,,,,,,,,,,,,,,,
+17,45.0,,,,,,,,,,,,,,,
+18,47.5,,,,,,,,,,,,,,,
+19,50.0,,,,,,,,,,,,,,,
