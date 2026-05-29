@@ -112,24 +112,46 @@ pio device monitor
 
 ## Modbus TCP Register Map
 
-| Address (0-based) | KEPware Address | Name | Description | Default |
-|-------------------|-----------------|------|-------------|---------|
-| 1 | 40001 | Volume_SP | Setpoint Volume (mL) | 1000 |
-| 2 | 40002 | Volume_PV | Volume Aktual (mL) | 0 |
-| 3 | 40003 | Status_Pompa | 0=OFF, 1=ON | 0 |
-| 4 | 40004 | Jarak_SP | Setpoint Jarak (cm) | 15 |
-| 5 | 40005 | Jarak_PV | Jarak Aktual (cm) | 20 |
-| 6 | 40006 | Status_Motor | 0=OFF, 1=ON | 0 |
-| 7 | 40007 | Suhu_SP | Setpoint Suhu (×0.1 °C) | 600 |
-| 8 | 40008 | Suhu_PV | Suhu Aktual (×0.1 °C) | 250 |
-| 9 | 40009 | Status_Heater | 0=OFF, 1=ON | 0 |
-| 10 | 40010 | Mixing_Duration | Durasi Mixing (s) | 300 |
-| 11 | 40011 | Mixing_Timer | Timer Mixing (s) | 0 |
-| 12 | 40012 | Status_Mixer | 0=OFF, 1=ON | 0 |
+### Slave 1 - Flow Control (TK-101)
+
+| Address (0-based) | KEPware Address | Name | Description | Scaling | Default |
+|-------------------|-----------------|------|-------------|---------|---------|
+| 1 | 40001 | S1_VOLUME_SP | Setpoint Volume (mL) | 1.0 | 900 |
+| 2 | 40002 | S1_VOLUME_PV | Volume Aktual (mL) | 1.0 | 0 |
+| 3 | 40003 | S1_PUMP_STATUS | 0=OFF, 1=ON | - | 0 |
+| 4 | 40004 | S1_FLOW_RATE | Debit (mL/min) | ×0.1 | 0 |
+| 5 | 40005 | S1_PULSE_COUNT | Total pulse | 1.0 | 0 |
+| 6 | 40006 | S1_PROCESS_ACTIVE | 0=STOP, 1=RUN | - | 0 |
+
+### Slave 2 - Level Control (TK-201)
+
+| Address (0-based) | KEPware Address | Name | Description | Scaling | Default |
+|-------------------|-----------------|------|-------------|---------|---------|
+| 7 | 40007 | S2_DISTANCE_SP | Setpoint Jarak (cm) | ÷100 | 2381 (23.81cm) |
+| 8 | 40008 | S2_DISTANCE_PV | Jarak Aktual (cm) | ÷100 | 2420 (24.20cm) |
+| 9 | 40009 | S2_DISTANCE_ERR | Error (cm) signed | ÷100 | 0 |
+| 10 | 40010 | S2_VOLUME_SP | Setpoint Volume (mL) | 1.0 | 100 |
+| 11 | 40011 | S2_VOLUME_PV | Volume Aktual (mL) | 1.0 | 0 |
+| 12 | 40012 | S2_MOTOR_DIR | 0=STOP, 1=UP, 2=DOWN | - | 0 |
+| 13 | 40013 | S2_AUTO_STATUS | 0=OFF, 1=ON | - | 0 |
+| 14 | 40014 | S2_SYS_STATUS | 0=STOP, 1=RUN, 2=FAULT | - | 0 |
+
+### Slave 3 - Temperature Control (TK-301)
+
+| Address (0-based) | KEPware Address | Name | Description | Scaling | Default |
+|-------------------|-----------------|------|-------------|---------|---------|
+| 15 | 40015 | S3_TEMP_SP | Setpoint Suhu (°C) | ÷10 | 600 (60.0°C) |
+| 16 | 40016 | S3_TEMP_PV | Suhu Aktual (°C) | ÷10 | 250 (25.0°C) |
+| 17 | 40017 | S3_HEATER_STATUS | 0=OFF, 1=ON | - | 0 |
+| 18 | 40018 | S3_MIXER_STATUS | 0=OFF, 1=ON | - | 0 |
+| 19 | 40019 | S3_MIXER_SPEED | 0=STOP, 1=NORMAL, 2=CEPAT | - | 0 |
+| 20 | 40020 | S3_PROCESS_TIMER | Timer countdown (s) | 1.0 | 420 |
+| 21 | 40021 | S3_PROCESS_STATUS | 0=STOP, 1=RUN | - | 0 |
 
 **Catatan Penting:**
 - Register 0 tidak dipakai (dummy)
-- Suhu disimpan ×10 (600 = 60.0°C), scaling dikerjakan di KEPServerEX
+- **Polling otomatis**: ESP32 polling semua 3 slave setiap 500ms
+- **Scaling**: Sebagian register perlu scaling di KEPServerEX
 - KEPware mengirim **Unit ID = 0** (Modbus TCP default), ESP32 merespon Unit ID 0/1
 
 ---
