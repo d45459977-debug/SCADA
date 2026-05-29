@@ -1,7 +1,7 @@
 # HMI Tag List - SOLOPHOBIA B400
 
-**Tanggal:** 2026-05-29  
-**Versi:** 1.2 - Complete Actuator Commands & Slave Status
+**Tanggal:** 2026-05-30
+**Versi:** 2.0 - Command Registers Lengkap & KEPServer Integration
 
 ---
 
@@ -54,19 +54,50 @@ Dokumen ini berisi daftar lengkap semua *tag* variable untuk komunikasi HMI ⇄ 
 
 ---
 
-## Command Registers (Write-Only untuk Trigger)
+## Command Registers (Control & Actuator Commands)
 
-| Addr (KEP) | Addr (0) | Tag | Deskripsi | Slave |
-|------------|----------|-----|-----------|-------|
-| 40100 | 100 | `CMD_S1_START` | Start Process (FIXED 900mL) | S1 |
-| 40101 | 101 | `CMD_S1_STOP` | Stop Process | S1 |
-| 40110 | 110 | `CMD_S2_START` | Start Process (FIXED 100mL) | S2 |
-| 40111 | 111 | `CMD_S2_STOP` | Stop Process | S2 |
-| 40120 | 120 | `CMD_S3_START` | Start Heating (60°C, 7min) | S3 |
-| 40121 | 121 | `CMD_S3_STOP` | Stop Heating | S3 |
-| 40122 | 122 | `CMD_S3_RESET` | Reset Process | S3 |
+### Slave 1 Commands (40100-40106)
 
-**Cara Pakai:** Write **nilai apa saja** ke register ini untuk trigger command.
+| Addr (KEP) | Addr (0) | Tag | Deskripsi | Write Value | Hasil |
+|------------|----------|-----|-----------|-------------|-------|
+| 40100 | 100 | `S1_SET_VOLUME_SP` | Set Setpoint Volume | 0-5000 | SP = nilai (mL) |
+| 40101 | 101 | `S1_START_STOP` | Start/Stop Process | 1=START, 0=STOP | Toggle proses |
+| 40102 | 102 | `S1_RELAY_CTRL` | Control Relay Pompa | 1=ON, 0=OFF | Pompa ON/OFF |
+| 40103 | 103 | `S1_RESET` | Reset Volume Counter | 1 | Reset ke 0 |
+| 40104 | 104 | `S1_START_FIXED` | Start FIXED Mode | 1 | Start 900mL |
+| 40105 | 105 | `S1_RESERVED` | Reserved | - | - |
+| 40106 | 106 | `S1_RESERVED` | Reserved | - | - |
+
+### Slave 2 Commands (40107-40114)
+
+| Addr (KEP) | Addr (0) | Tag | Deskripsi | Write Value | Hasil |
+|------------|----------|-----|-----------|-------------|-------|
+| 40107 | 107 | `S2_SET_DISTANCE_SP` | Set Setpoint Jarak | 200-2420 | SP = nilai÷100 (cm) |
+| 40108 | 108 | `S2_START_STOP` | Start/Stop Process | 1=START, 0=STOP | Toggle proses |
+| 40109 | 109 | `S2_MOTOR_DIR` | Control Arah Motor | 0=STOP, 1=UP, 2=DOWN | Motor control |
+| 40110 | 110 | `S2_MOTOR_SPEED` | Set Motor Speed PWM | 0-255 | Speed = nilai |
+| 40111 | 111 | `S2_START_FIXED` | Start FIXED Mode | 1 | Start 100mL |
+| 40112 | 112 | `S2_RESERVED` | Reserved | - | - |
+| 40113 | 113 | `S2_RESERVED` | Reserved | - | - |
+| 40114 | 114 | `S2_RESERVED` | Reserved | - | - |
+
+### Slave 3 Commands (40115-40122)
+
+| Addr (KEP) | Addr (0) | Tag | Deskripsi | Write Value | Hasil |
+|------------|----------|-----|-----------|-------------|-------|
+| 40115 | 115 | `S3_SET_TEMP_SP` | Set Setpoint Suhu | 250-900 | SP = nilai÷10 (°C) |
+| 40116 | 116 | `S3_START_STOP` | Start/Stop Process | 1=START, 0=STOP | Toggle proses |
+| 40117 | 117 | `S3_HEATER_CTRL` | Control Heater | 1=ON, 0=OFF | Heater ON/OFF |
+| 40118 | 118 | `S3_MIXER_SPEED` | Set Kecepatan Mixer | 0=STOP, 1=NORMAL, 2=CEPAT | Mixer control |
+| 40119 | 119 | `S3_RESERVED` | Reserved | - | - |
+| 40120 | 120 | `S3_RESERVED` | Reserved | - | - |
+| 40121 | 121 | `S3_RESERVED` | Reserved | - | - |
+| 40122 | 122 | `S3_RESERVED` | Reserved | - | - |
+
+**Cara Pakai Command Registers:**
+- Write **1** untuk START/ON/FIXED mode
+- Write **0** untuk STOP/OFF
+- Write **nilai spesifik** untuk SETSP/SETPOINT
 
 ---
 
@@ -185,16 +216,19 @@ Dokumen ini berisi daftar lengkap semua *tag* variable untuk komunikasi HMI ⇄ 
 ## File Terkait
 
 - `HMI_TAG_LIST.md` - File ini
-- `KOMDAT_TCPIP/esp32_gateway/esp32_simulasi_dummy/esp32_simulasi_dummy.ino` - ESP32 Gateway
+- `KOMDAT_TCPIP/esp32_gateway/esp32_kepware/esp32_kepware.ino` - ESP32 Gateway untuk KEPServerEX
+- `KOMDAT_TCPIP/esp32_gateway/esp32_simulasi_dummy/esp32_simulasi_dummy.ino` - ESP32 Gateway RS485-only
+- `init/` - Backup kode yang berfungsi
 - `KOMDAT_TCPIP/CLAUDE.md` - Dokumentasi ESP32
 
 ---
 
 ## Changelog
 
-**v1.0 → v1.2:**
+**v1.0 → v2.0:**
 - v1.1: Tambah register lengkap semua slave (40001-40021)
 - v1.2: Tambah command registers (40100-40122), status koneksi (40022-40024), actuator control
+- v2.0: Perbaiki command registers lengkap untuk semua aktuator control, siap integrasi KEPServerEX
 
 ---
 
