@@ -93,7 +93,7 @@ arduino-cli upload -p /dev/ttyACM0 --fqbn esp32:esp32:esp32 master_kepware/esp32
 
 Lihat dokumen lengkap di: `2.1.1_PENGUJIAN_SUB_SISTEM_KENDALI.md`
 
-Total test items: **55** (13 Slave 1, 17 Slave 2, 25 Slave 3)
+Total test items: **68** (17 Slave 1, 21 Slave 2, 30 Slave 3)
 
 ---
 
